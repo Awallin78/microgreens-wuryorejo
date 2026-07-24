@@ -201,20 +201,33 @@
                             ${member.proyek.map(createProjectCard).join('')}
                         </ul>
                     </div>
-                   ${fileProjects.length ? `
-            <div class="mt-8">
-                <h2 class="text-xl font-bold text-emerald-900 mb-4">Materi Legalitas Usaha</h2>
-                
-                <!-- Card Utama: Tampil Sempurna di HP & Laptop -->
-                <div class="rounded-3xl bg-emerald-50 p-5 sm:p-6 border border-emerald-100 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
-                    <div class="text-center sm:text-left">
-                        <p class="font-semibold text-emerald-900 text-base">Dokumen Legalitas Usaha (NIB, PIRT, Halal)</p>
-                        <p class="text-xs text-emerald-700 mt-1">Klik tombol di bawah untuk membuka dan membaca dokumen PDF secara lengkap.</p>
-                    </div>
-                    <a href="${fileProjects[0].file}" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-pink-600 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-pink-700 active:scale-95 transition-all">
-                        📄 Buka Dokumen PDF
-                    </a>
-                </div>
+
+                    <!-- BLOK FILE PDF (KHUSUS MEMBER DENGAN FILE PDF / EUIS) -->
+                    ${fileProjects.length ? `
+                    <div class="mt-8">
+                        <h2 class="text-xl font-bold text-emerald-900 mb-4">Materi Legalitas Usaha</h2>
+                        
+                        <div class="rounded-3xl bg-emerald-50 p-5 sm:p-6 border border-emerald-100 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+                            <div class="text-center sm:text-left">
+                                <p class="font-semibold text-emerald-900 text-base">Dokumen Legalitas Usaha (NIB, PIRT, Halal)</p>
+                                <p class="text-xs text-emerald-700 mt-1">Klik tombol di bawah untuk membuka dan membaca dokumen PDF secara lengkap.</p>
+                            </div>
+                            <a href="${fileProjects[0].file}" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-pink-600 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-pink-700 active:scale-95 transition-all">
+                                📄 Buka Dokumen PDF
+                            </a>
+                        </div>
+
+                        <div class="mt-6 rounded-3xl overflow-hidden border border-emerald-100 shadow-sm bg-white hidden md:block">
+                            <iframe 
+                                src="${fileProjects[0].file}" 
+                                class="w-full h-[650px] border-0" 
+                                loading="lazy"
+                                title="Materi Legalitas Usaha">
+                            </iframe>
+                        </div>
+                    </div>` : ''}
+
+                    <!-- BLOK CANVA (MANDIRI DI LUAR BLOK PDF / KEYZIA) -->
                     ${member.canva ? `
                     <div class="mt-8">
                         <h2 class="text-xl font-bold text-emerald-900 mb-4">Materi Edukasi Canva</h2>
@@ -238,20 +251,9 @@
                             </iframe>
                         </div>
                     </div>` : ''}
-
-                <!-- Preview Iframe: Disembunyikan di HP (hidden), Hanya Tampil di Tablet/Desktop (md:block) -->
-                <div class="mt-6 rounded-3xl overflow-hidden border border-emerald-100 shadow-sm bg-white hidden md:block">
-                    <iframe 
-                        src="${fileProjects[0].file}" 
-                        class="w-full h-[650px] border-0" 
-                        loading="lazy"
-                        title="Materi Legalitas Usaha">
-                    </iframe>
                 </div>
-            </div>` : ''}
-        </div>
-    `;
-}
+            `;
+        }
 
         function renderAllMembers() {
             document.title = 'Proyek Tim KKN Wuryorejo';
