@@ -96,7 +96,8 @@
                 foto: "./keyzia.png",
                 proyek: [
                     { judul: "Komunikasi Publik", deskripsi: "Mengelola hubungan masyarakat dan publikasi informasi kegiatan." }
-                ]
+                ],
+                canva: "https://www.canva.com/design/DAHQQrdmBSU/H4xRrmHP-77_a1LECKrzDQ/view"
             },
             {
                 id: 5,
@@ -214,6 +215,29 @@
                         📄 Buka Dokumen PDF
                     </a>
                 </div>
+                    ${member.canva ? `
+                    <div class="mt-8">
+                        <h2 class="text-xl font-bold text-emerald-900 mb-4">Materi Edukasi Canva</h2>
+                        <div class="rounded-3xl bg-emerald-50 p-5 sm:p-6 border border-emerald-100 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+                            <div class="text-center sm:text-left">
+                                <p class="font-semibold text-emerald-900 text-base">Materi Presentasi / Modul Edukasi</p>
+                                <p class="text-xs text-emerald-700 mt-1">Klik tombol di bawah jika ingin membuka materi secara langsung di aplikasi/tab Canva.</p>
+                            </div>
+                            <a href="${member.canva}" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-pink-600 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-pink-700 active:scale-95 transition-all">
+                                🎨 Buka di Canva
+                            </a>
+                        </div>
+                        <div class="mt-6 rounded-3xl overflow-hidden border border-emerald-100 shadow-sm bg-white aspect-video w-full">
+                            <iframe 
+                                src="${member.canva.replace(/\/view$/, '')}/view?embed" 
+                                class="w-full h-full border-0" 
+                                allowfullscreen="allowfullscreen" 
+                                allow="fullscreen"
+                                loading="lazy"
+                                title="Materi Canva ${member.nama}">
+                            </iframe>
+                        </div>
+                    </div>` : ''}
 
                 <!-- Preview Iframe: Disembunyikan di HP (hidden), Hanya Tampil di Tablet/Desktop (md:block) -->
                 <div class="mt-6 rounded-3xl overflow-hidden border border-emerald-100 shadow-sm bg-white hidden md:block">
@@ -228,7 +252,6 @@
         </div>
     `;
 }
-
 
         function renderAllMembers() {
             document.title = 'Proyek Tim KKN Wuryorejo';
