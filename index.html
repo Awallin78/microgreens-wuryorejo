@@ -312,7 +312,23 @@
                 icon: "fa-calendar-check",
                 anggota: [
                     { id: 4, nama: "Mouline Afina Putri Heriyanto", jabatan: "Divisi Acara", nim: "24020223140083", jurusan: "Bioteknologi", foto: "./mouline.png" },
-                    { id: 9, nama: "Euis Almira Kholifatur Rosyid", jabatan: "Divisi Acara", nim: "11000123120005", jurusan: "Hukum", foto: "./euis.png", isEuis: true },
+                    {
+    id: 9,
+    nama: "Euis Almira Kholifatur Rosyid",
+    jabatan: "Sekretaris I",
+    nim: "11000123120005",
+    jurusan: "Hukum",
+    foto: "./euis.png",
+    proyek: [
+        { judul: "Manajemen Admin", deskripsi: "Mengatur arsip dokumen, pencatatan notulen, dan administrasi surat-menyurat." },
+        { judul: "Publikasi Hukum", deskripsi: "Membantu penyusunan aturan internal dan tata tertib acara lapangan." },
+        { 
+            judul: "Modul Edukasi Legalitas Usaha", 
+            deskripsi: "Dokumen panduan resmi pembuatan NIB, PIRT, dan Sertifikat Halal bagi UMKM.",
+            file: "LEGALITAS USAHA.pdf" // File PDF langsung dipanggil di sini
+        }
+    ]
+},
                     { id: 3, nama: "Natasya Jacklin Abigail Suherlin", jabatan: "Divisi Acara", nim: "23020223140141", jurusan: "Agroekoteknologi", foto: "./natasya.png" }
                 ]
             },
