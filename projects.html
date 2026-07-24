@@ -157,11 +157,16 @@
             `;
         }
 
+        function loadPdfViewer(src) {
+            const viewer = document.getElementById('pdf-viewer');
+            if (!viewer || viewer.dataset.loaded === 'true') return;
+            viewer.innerHTML = `<iframe src="${src}" class="w-full h-[450px] sm:h-[700px] border-0" loading="lazy" title="Materi Legalitas Usaha"></iframe>`;
+            viewer.dataset.loaded = 'true';
+        }
+
         function renderMember(member) {
             document.title = `Proyek ${member.nama} - KKN Wuryorejo`;
             const fileProjects = member.proyek.filter(project => project.file);
-            
-            // Penyesuaian posisi foto khusus Euis
             const customPosition = member.foto.includes('euis.png') ? 'object-position: center top;' : '';
 
             content.innerHTML = `
@@ -198,14 +203,25 @@
                     ${fileProjects.length ? `
                     <div class="mt-8">
                         <h2 class="text-xl font-bold text-emerald-900 mb-4">Materi Legalitas Usaha</h2>
-                        <div class="rounded-3xl bg-emerald-50 p-6 border border-emerald-100">
-                            <p class="text-sm text-emerald-700 mb-4">Berikut materi dokumen legalitas usaha yang bisa dibaca langsung.</p>
-                            <a href="${fileProjects[0].file}" target="_blank" class="inline-flex items-center justify-center rounded-full bg-pink-600 px-4 py-2 text-sm font-semibold text-white hover:bg-pink-700 transition">Buka Materi Legalitas Usaha</a>
+                        <div class="rounded-3xl bg-emerald-50 p-6 border border-emerald-100 space-y-4">
+                            <p class="text-sm text-emerald-700">Berikut materi dokumen legalitas usaha yang bisa dibaca langsung.</p>
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                                <button onclick="loadPdfViewer('${fileProjects[0].file}')" class="inline-flex items-center justify-center rounded-full bg-pink-600 px-4 py-2 text-sm font-semibold text-white hover:bg-pink-700 transition">
+                                    📄 Muat Preview PDF
+                                </button>
+                                <a href="${fileProjects[0].file}" target="_blank" class="inline-flex items-center justify-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-pink-900 border border-pink-600 hover:bg-pink-50 transition">
+                                    🔍 Buka PDF Fullscreen
+                                </a>
+                            </div>
                         </div>
-                        <div class="mt-6 rounded-3xl overflow-hidden border border-emerald-100 shadow-sm">
-                            <iframe src="${fileProjects[0].file}" class="w-full h-[600px]" title="Materi Legalitas Usaha"></iframe>
+                        <div class="mt-6 rounded-3xl overflow-hidden border border-emerald-100 shadow-sm bg-white">
+                            <div class="p-10 text-center text-emerald-700" id="pdf-viewer" data-loaded="false">
+                                <p class="font-semibold">Preview dokumen belum dimuat.</p>
+                                <p class="text-xs mt-2 text-emerald-600">Tekan tombol untuk memuat preview PDF lebih cepat.</p>
+                            </div>
                         </div>
-                    </div>` : ''}
+                    </div>
+                    ` : ''}
                 </div>
             `;
         }
